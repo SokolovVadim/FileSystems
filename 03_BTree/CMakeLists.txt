@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.10.2)
+set (CMAKE_CXX_STANDARD 11)
+set(PROJECT_NAME "BTree")
+project(${PROJECT_NAME})
+add_compile_options(-Wall)
+add_executable(${PROJECT_NAME} main.cpp node.cpp btree.cpp)
