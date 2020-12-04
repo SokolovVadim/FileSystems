@@ -1,3 +1,5 @@
+#ifndef NODE_HPP
+#define NODE_HPP
 #include <vector>
 #include <string>
 
@@ -17,6 +19,9 @@ public:
 	~Node() = default;
 	Node(int degree);
 	void insert(int64_t key);
+	void split(Node* child, int idx);
+	Node* search(int64_t key);
+	void shift(int64_t key, int64_t idx);
 private:
 	uint32_t degree_;
 	uint32_t keyNum_;
@@ -24,3 +29,5 @@ private:
 	bool isLeaf_;
 	std::vector<Pair> data_;
 };
+
+#endif // NODE_HPP
