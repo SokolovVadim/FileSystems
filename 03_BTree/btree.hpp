@@ -6,7 +6,8 @@ public:
 	BTree() = default;
 	~BTree() = default;
 	BTree(int degree);
-	void insert(int key);
+	void insert(int64_t key);
+	Node* search(int64_t key);
 private:
 	int degree_;
 	Node* root_;

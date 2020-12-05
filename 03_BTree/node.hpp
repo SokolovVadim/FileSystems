@@ -19,7 +19,7 @@ public:
 	~Node() = default;
 	Node(int degree);
 	void insert(int64_t key);
-	void split(Node* child, int idx);
+	void split(Node* child, int idx, int64_t key);
 	Node* search(int64_t key);
 	void shift(int64_t key, int64_t idx);
 private:

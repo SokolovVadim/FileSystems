@@ -44,13 +44,26 @@ void Node::insert(int64_t key)
 		}
 		
 	}
+	else // keyNum_ == degree_ * 2 - 1, node fullfilled
+	{
+		split(data_[keyNum_].child_, keyNum_, key);
+	}
 }
 
-void Node::split(Node* child, int idx)
+/*
+5 8 12 6
+
+	5 8 12
+	
+		8
+	5 6		12
+*/
+
+void Node::split(Node* child, int idx, int64_t key)
 {
-
+	Node* newNode = new Node(degree_);
+	newNode->insert(key);
 }
-
 
 Node* Node::search(int64_t key)
 {
