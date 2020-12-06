@@ -16,13 +16,24 @@ Node::Node(int degree, bool isLeaf) :
 	std::cout << "Node constructed!\ndegree = " << degree_ << std::endl;
 }
 
-void Node::shift(int64_t key, int64_t idx)
+void Node::shift_right(int64_t key, int64_t idx)
 {
 	for (int64_t i(idx + 2); i < keyNum_ + 1; ++i)
 	{
 		data_[i] = data_[i - 1];
 	}
 	data_[idx + 1].key_ = key;
+	keyNum_++;
+}
+
+void Node::shift_left(int64_t key)
+{
+	std::cout << "key num: " << keyNum_ << std::endl;
+	for (int64_t i = keyNum_; i > 0; --i)
+	{
+		data_[i] = data_[i - 1];
+	}
+	data_[0].key_ = key;
 	keyNum_++;
 }
 
@@ -96,8 +107,6 @@ void Node::printAll()
 	}
 }
 
-
-
 void Node::insert(int64_t key)
 {
 	if (keyNum_ == 0)
@@ -111,14 +120,17 @@ void Node::insert(int64_t key)
 		{
 			if (key > data_[i].key_)
 			{
-				shift(key, i);
-				std::cout << "Shift case! Key " << key << " inserted!\n";
+				shift_right(key, i);
+				std::cout << "Shift right case! Key " << key << " inserted!\n";
 				break;
 			}
 		}
-
+		if (key < data_[0].key_) {
+			std::cout << "Shift left case! Key " << key << " inserted!\n";
+			shift_left(key);
+		}
 	}
-	else // keyNum_ == degree_ * 2 - 1, node fullfilled
+	else // keyNum_ == degree_ * 2 - 1, node fulfilled
 	{
 		std::cout << "Split case!\n";
 		split(data_[keyNum_].child_, keyNum_, key);
@@ -126,17 +138,18 @@ void Node::insert(int64_t key)
 }
 
 /*
-5 8 12 6
+5 8 12 6 22
 
 	5 8 12
 
 		8
-	5 6		12
+	5 6		12 22
 */
 
 void Node::split(Node* node, int idx, int64_t key)
 {
 	Node* newNode = new Node(node->degree_, node->isLeaf_);
+
 }
 
 Node* Node::search(int64_t key)

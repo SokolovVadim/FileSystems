@@ -22,7 +22,8 @@ public:
 	void insert(int64_t key);
 	void split(Node* child, int idx, int64_t key);
 	Node* search(int64_t key);
-	void shift(int64_t key, int64_t idx);
+	void shift_right(int64_t key, int64_t idx);
+	void shift_left(int64_t key);
 	const int64_t getKeyNum() const;
 	bool isNodeFull();
 	Node* splitRoot(int64_t key);
