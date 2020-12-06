@@ -42,10 +42,11 @@ bool Node::isNodeFull()
 // root is fulfilled
 Node* Node::splitRoot(int64_t key)
 {
+	// create new root with middle elem
 	Node* newRoot = new Node(degree_, false);
 	newRoot->data_[0].child_ = this;
-
-	newRoot->printNode();
+	newRoot->data_[0].key_ = this->data_[degree_ - 1].key_;
+	newRoot->keyNum_ = 1;
 
 	Node* newNode = new Node(degree_, false);
 	// copy contents of root to the newNode
@@ -56,6 +57,18 @@ Node* Node::splitRoot(int64_t key)
 	newNode->keyNum_ = degree_ - 1;
 	newNode->printNode();
 
+	// clear old root's right data
+
+	for (int i(0); i < degree_ - 1; ++i)
+	{
+		this->data_[i + degree_ - 1].child_ = nullptr;
+		this->data_[i + degree_ - 1].key_ = 0;
+	}
+	this->keyNum_ = degree_ - 1;
+
+	// set new node as a right child
+	newRoot->data_[1].child_ = newNode;
+	newRoot->printNode();
 	return newRoot;
 }
 
@@ -70,6 +83,20 @@ void Node::printNode()
 	}
 	std::cout << "--------- PRINT_NODE  END  ---------" << std::endl;
 }
+
+void Node::printAll()
+{
+	printNode();
+	for (int64_t i(0); i < keyNum_ + 1; ++i)
+	{
+		if (data_[i].child_ != nullptr)
+		{
+			data_[i].child_->printAll();
+		}
+	}
+}
+
+
 
 void Node::insert(int64_t key)
 {

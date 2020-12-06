@@ -9,6 +9,7 @@ public:
 	BTree(int degree);
 	void insert(int64_t key);
 	Node* search(int64_t key);
+	void printTree();
 private:
 	int degree_;
 	Node* root_;

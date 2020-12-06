@@ -41,3 +41,8 @@ Node* BTree::search(int64_t key)
 	else
 		return root_->search(key);
 }
+
+void BTree::printTree()
+{
+	root_->printAll();
+}

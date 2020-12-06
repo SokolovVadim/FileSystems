@@ -27,6 +27,7 @@ public:
 	bool isNodeFull();
 	Node* splitRoot(int64_t key);
 	void printNode();
+	void printAll();
 private:
 	uint64_t degree_;
 	uint64_t keyNum_;

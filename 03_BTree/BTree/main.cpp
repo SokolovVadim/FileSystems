@@ -15,7 +15,7 @@ int main()
 
 bool test_tree()
 {
-	BTree tree(2);
+	BTree tree(3);
 	tree.insert(5);
 	tree.insert(8);
 
@@ -23,6 +23,11 @@ bool test_tree()
 
 	tree.insert(9);
 	tree.insert(10);
+	tree.insert(11);
+	tree.insert(12);
+
+	std::cout << "---------------------------\n";
+	tree.printTree();
 
 	return true;
 }
