@@ -15,16 +15,20 @@ int main()
 
 bool test_tree()
 {
-	BTree tree(3);
+	BTree tree(2);
+	tree.insert(8);
+	tree.insert(13);
 	tree.insert(5);
-	tree.insert(2);
-
-	tree.search(2);
-
-	tree.insert(3);
+	tree.insert(0);
+	tree.insert(16);
+	tree.insert(7);
+	tree.insert(23);
+	tree.insert(48);
+	tree.insert(15);
 	tree.insert(1);
-	tree.insert(11);
-	// tree.insert(12);
+	tree.insert(2);
+	tree.insert(3);
+	tree.insert(4);
 
 	std::cout << "---------------------------\n";
 	tree.printTree();

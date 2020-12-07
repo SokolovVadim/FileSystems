@@ -31,7 +31,6 @@ void BTree::insert(int64_t key)
 				root_->insert(key);
 		}
 	}
-
 }
 
 Node* BTree::search(int64_t key)
@@ -44,5 +43,9 @@ Node* BTree::search(int64_t key)
 
 void BTree::printTree()
 {
+	std::cout << "------------------------------------\n";
+	std::cout << "--------- PRINT TREE START ---------\n";
 	root_->printAll();
+	std::cout << "---------- PRINT TREE END ----------\n";
+	std::cout << "------------------------------------\n";
 }

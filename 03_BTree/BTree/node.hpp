@@ -20,7 +20,7 @@ public:
 	~Node() = default;
 	Node(int degree, bool isLeaf);
 	void insert(int64_t key);
-	void split(Node* child, int idx, int64_t key);
+	void split(Node* child, int idx);
 	Node* search(int64_t key);
 	void shift_right(int64_t key, int64_t idx);
 	void shift_left(int64_t key);
