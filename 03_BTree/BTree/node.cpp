@@ -204,3 +204,31 @@ Node* Node::search(int64_t key)
 	}
 	return data_[idx].child_->search(key);
 }
+
+void Node::printDot(std::string& msg)
+{
+	if (this == nullptr)
+		return;
+	if (this)
+	{
+		msg += "\"" + std::to_string((int64_t)this) + "\" [label = \"";
+		for (int i(0); i < keyNum_ - 1; ++i)
+		{
+			msg += std::to_string(data_[i].key_) + " | ";
+		}
+		msg += std::to_string(data_[keyNum_ - 1].key_) + "\"];\n";
+	}
+	for (int i(0); i < keyNum_ + 1; ++i)
+	{
+		if ((this) && (data_[i].child_))
+		{
+			msg += "\"" + std::to_string((int64_t)this) + "\"->\"";
+			msg += std::to_string(int64_t(data_[i].child_)) + "\";\n";
+		}
+	}
+	for (int i(0); i < keyNum_ + 1; ++i)
+	{
+		if (data_[i].child_)
+			data_[i].child_->printDot(msg);
+	}
+}

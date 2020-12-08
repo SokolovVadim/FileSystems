@@ -32,6 +32,7 @@ bool test_tree()
 
 	std::cout << "---------------------------\n";
 	tree.printTree();
+	tree.printDot();
 
 	return true;
 }

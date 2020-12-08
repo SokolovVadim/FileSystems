@@ -1,5 +1,6 @@
 #include "btree.hpp"
 #include <iostream>
+#include <fstream>
 
 BTree::BTree(int degree) :
 	degree_(degree),
@@ -51,4 +52,30 @@ void BTree::printTree()
 	root_->printAll();
 	std::cout << "---------- PRINT TREE END ----------\n";
 	std::cout << "------------------------------------\n";
+}
+
+void BTree::printDot()
+{
+	std::string msg{};
+	if (root_ == nullptr)
+	{
+		msg += "Tree is empty!\n";
+	}
+	else
+	{
+		msg = "digraph Tree {\n";
+		root_->printDot(msg);
+		msg += "\n}";
+		write_to_file(msg);
+	}
+}
+
+void BTree::write_to_file(const std::string& msg)
+{
+	std::ofstream fout("out.dot");
+	if (fout.is_open())
+	{
+		fout.write(msg.c_str(), msg.length());
+	}
+	fout.close();
 }
