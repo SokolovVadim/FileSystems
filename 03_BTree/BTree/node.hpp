@@ -13,6 +13,18 @@ struct Pair
 	Node* child_;
 };
 
+struct Triple
+{
+	Triple(int64_t key, Node* left, Node* right):
+		key_(key),
+		leftChild_(left),
+		rightChild_(right)
+	{}
+	int64_t key_;
+	Node* leftChild_;
+	Node* rightChild_;
+};
+
 class Node
 {
 public:
@@ -20,12 +32,13 @@ public:
 	~Node() = default;
 	Node(int degree, bool isLeaf);
 	void insert(int64_t key);
-	void split(Node* child, int idx);
+	void splitChild(int idx, Node* child);
 	Node* search(int64_t key);
 	void shift_right(int64_t key, int64_t idx);
 	void shift_left(int64_t key);
 	const int64_t getKeyNum() const;
 	bool isNodeFull();
+	const bool isLeaf() const;
 	Node* splitRoot(int64_t key);
 	void printNode();
 	void printAll();

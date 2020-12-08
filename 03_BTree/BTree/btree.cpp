@@ -23,8 +23,6 @@ void BTree::insert(int64_t key)
 			std::cout << "Key " << key << " does not exist! Inserting ...\n";
 			if (root_->isNodeFull())
 			{
-				root_->printNode();
-				std::cout << "Split root case\n";
 				root_ = root_->splitRoot(key);
 			}
 			else
@@ -43,6 +41,11 @@ Node* BTree::search(int64_t key)
 
 void BTree::printTree()
 {
+	if (root_ == nullptr)
+	{
+		std::cout << "Root is empty. Insert elements\n";
+		return;
+	}
 	std::cout << "------------------------------------\n";
 	std::cout << "--------- PRINT TREE START ---------\n";
 	root_->printAll();
